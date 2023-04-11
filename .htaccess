@@ -1,0 +1,3 @@
+RewriteEngine Off
+RewriteCond %{HTTP} off
+RewriteCond %{HTTPS} off
