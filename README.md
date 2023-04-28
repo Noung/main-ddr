@@ -1,7 +1,7 @@
 # main-ddr
 ## ระบบรายงานสภาพอากาศและฝุ่นละอองในตัวอาคาร สำนักวิทยบริการ มหาวิทยาลัยสงขลานครินทร์ วข.ปัตตานี v.1.0.0 Release date: 24.06.2022
 
-![image info](./pictures/image.png)
+![image info](https://github.com/Noung/main-ddr/blob/main/SCREEN~4.PNG)
 
 **ความสามารถของระบบ**
 1. บันทึกค่าคุณภาพอากาศตามจุดต่างๆ ลงฐานข้อมูล 
