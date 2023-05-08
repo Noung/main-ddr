@@ -65,15 +65,10 @@ boolean connectWIFI = true;
 // change if you want to send the data to another server
 String APIROOT = "http://hw.airgradient.com/";
 
-const char* ssid = "5BB";
-const char* password = "Libservices";
+const char* ssid = "ssid_name";
+const char* password = "ssid_pwd";
 
-
-/*const char* ssid = "Memento_0i_Pixel2xl";
-const char* password = "tangtaime";
-*/
-
-String serverName = "http://ddr.oas.psu.ac.th/update_sensor.php";
+String serverName = "http://ddr.oas.psu.ac.th/update_sensor.php"; //server page
 
 void setup() {
   Serial.begin(9600);
@@ -120,7 +115,7 @@ void loop() {
       showTextRectangle("PM2", String(PM2), false);
     }
 
-    delay(900000);
+    delay(900000);//15 นาที
 
   }
 
@@ -129,7 +124,7 @@ void loop() {
     int CO2 = ag.getCO2_Raw();
     payload = payload + "\"rco2\":" + String(CO2);
     showTextRectangle("CO2", String(CO2), false);
-    delay(900000);
+    delay(900000);//15 นาที
   }
 
   if (hasSHT) {
@@ -143,7 +138,7 @@ void loop() {
       showTextRectangle(String(result.t), String(result.rh) + "%", false);
     }
 
-    delay(900000);
+    delay(900000);//15 นาที
   }
 
   payload = payload + "}";
