@@ -197,7 +197,7 @@ if (!$searchwordcomp_posidA || !$searchwordcomp_posidB || !$searchwordcomp_stdat
     } else if ($searchwordcomp_posidA == '3') {
         $posnameA = 'โถงอ่านหนังสือชั้น 1';
     } else if ($searchwordcomp_posidA == '4') {
-        $posnameA = 'ชั้นวารสารใหม่';
+        $posnameA = 'หน้าอาคารสำนักวิทยบริการ';
     } else if ($searchwordcomp_posidA == '5') {
         $posnameA = 'ชั้นวารสารล่วงเวลา';
     } else if ($searchwordcomp_posidA == '6') {
@@ -229,13 +229,13 @@ if (!$searchwordcomp_posidA || !$searchwordcomp_posidB || !$searchwordcomp_stdat
     } else if ($searchwordcomp_posidA == '19') {
         $posnameA = 'งานวิเคราะห์ทรัพยากรฯ';
     } else if ($searchwordcomp_posidA == '20') {
-        $posnameA = 'งานธุรการ';
+        $posnameA = 'โรงพิมพ์ฝ่ายเทคโนโลยีและนวัตกรรมฯ';
     } else if ($searchwordcomp_posidA == '21') {
         $posnameA = 'งานห้องสมุดดิจิทัล';
     } else if ($searchwordcomp_posidA == '22') {
         $posnameA = 'งานซ่อมฯ';
     } else if ($searchwordcomp_posidA == '23') {
-        $posnameA = 'ชั้นหนังสือ';
+        $posnameA = 'ห้องกราฟิกและสื่อสิ่งพิมพ์ดิจิทัล';
     } else if ($searchwordcomp_posidA == '24') {
         $posnameA = 'ชั้นหนังสือภาษาเกาหลี';
     } else if ($searchwordcomp_posidA == '25') {
@@ -261,7 +261,7 @@ if (!$searchwordcomp_posidA || !$searchwordcomp_posidB || !$searchwordcomp_stdat
     } else if ($searchwordcomp_posidB == '3') {
         $posnameB = 'โถงอ่านหนังสือชั้น 1';
     } else if ($searchwordcomp_posidB == '4') {
-        $posnameB = 'ชั้นวารสารใหม่';
+        $posnameB = 'หน้าอาคารสำนักวิทยบริการ';
     } else if ($searchwordcomp_posidB == '5') {
         $posnameB = 'ชั้นวารสารล่วงเวลา';
     } else if ($searchwordcomp_posidB == '6') {
@@ -293,13 +293,13 @@ if (!$searchwordcomp_posidA || !$searchwordcomp_posidB || !$searchwordcomp_stdat
     } else if ($searchwordcomp_posidB == '19') {
         $posnameB = 'งานวิเคราะห์ทรัพยากรฯ';
     } else if ($searchwordcomp_posidB == '20') {
-        $posnameB = 'งานธุรการ';
+        $posnameB = 'โรงพิมพ์ฝ่ายเทคโนโลยีและนวัตกรรมฯ';
     } else if ($searchwordcomp_posidB == '21') {
         $posnameB = 'งานห้องสมุดดิจิทัล';
     } else if ($searchwordcomp_posidB == '22') {
         $posnameB = 'งานซ่อมฯ';
     } else if ($searchwordcomp_posidB == '23') {
-        $posnameB = 'ชั้นหนังสือ';
+        $posnameB = 'ห้องกราฟิกและสื่อสิ่งพิมพ์ดิจิทัล';
     } else if ($searchwordcomp_posidB == '24') {
         $posnameB = 'ชั้นหนังสือภาษาเกาหลี';
     } else if ($searchwordcomp_posidB == '25') {

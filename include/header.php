@@ -10,69 +10,81 @@ include "include/dbconf.php";
 include "include/login.php";
 //include "dashboard/include/dustrec.php";
 
-if($_POST['username']){
-	$username=$_POST['username'];
-	$password=$_POST['password'];
+if ($_POST['username']) {
+    $username = $_POST['username'];
+    $password = $_POST['password'];
 
-	require_once ("include/dbconf.php");
-    require_once ("include/function.php");
-    require_once ("include/nusoap.php");
-    
-    $mysqli=db_conn(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_DATABASE);
+    require_once("include/dbconf.php");
+    require_once("include/function.php");
+    require_once("include/nusoap.php");
 
-	$query="select staff_id from staff where staff_username='$username'";
-	$result = $mysqli->query($query); // ทำการ query คำสั่ง sql   
-	$total=$result->num_rows;  // นับจำนวนแถวที่แสดงทั้งหมด 
-    
+    $mysqli = db_conn(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_DATABASE);
+
+    $query = "select staff_id from staff where staff_username='$username'";
+    $result = $mysqli->query($query); // ทำการ query คำสั่ง sql   
+    $total = $result->num_rows;  // นับจำนวนแถวที่แสดงทั้งหมด 
+
     /*echo $total;
     exit();*/
-    
-    if($total != '0'){ // พบ username ในฐานข้อมูล เข้าสู่ขั้นตอนการ Login ด้วย PSU Passport
-        $list=lib_psulogin_wsdl($username,$password);
-        if($list[0]=='true'){
-            $_SESSION["LOGIN"]=1;
-            $_SESSION["USERNAME"]=$list[1]; // array($str_return,$login,$name,$sname,$staff_id,$sex,$per_id,$a7,$a8,$fac_name,$a10,$campus_name,$a12,$title_name,$email,$a15);
-            ?>
-		    
-		    <!--<script>
+
+    if ($total != '0') { // พบ username ในฐานข้อมูล เข้าสู่ขั้นตอนการ Login ด้วย PSU Passport
+        $list = lib_psulogin_wsdl($username, $password);
+        if ($list[0] == 'true') {
+            $_SESSION["LOGIN"] = 1;
+            $_SESSION["USERNAME"] = $list[1]; // array($str_return,$login,$name,$sname,$staff_id,$sex,$per_id,$a7,$a8,$fac_name,$a10,$campus_name,$a12,$title_name,$email,$a15);
+?>
+
+            <!--<script>
 		      location='/dashboard/index.php' // Login ผ่าน ให้ไปหน้า dashboard (ปรับใช้เป็น medal)
 	       </script>-->
-	       <script type="text/javascript">
-                $(window).load(function(){
-                $('#LoginSuccess').modal({backdrop: 'static', keyboard: false});                        $('#LoginSuccess').modal('show');
+            <script type="text/javascript">
+                $(window).load(function() {
+                    $('#LoginSuccess').modal({
+                        backdrop: 'static',
+                        keyboard: false
+                    });
+                    $('#LoginSuccess').modal('show');
                 });
             </script>
-          
-           <?php
+
+        <?php
             exit();
-        }else{ // พบ username ในฐานข้อมูล แต่เชื่อมต่อ PSU Passport ไม่ได้หรือรหัสผ่านผู้ใช้ผิด
-            ?>
-        
-		    <!--<script>
+        } else { // พบ username ในฐานข้อมูล แต่เชื่อมต่อ PSU Passport ไม่ได้หรือรหัสผ่านผู้ใช้ผิด
+        ?>
+
+            <!--<script>
 		      alert("ขออภัย การเชื่อมต้อกับ PSU Passport ผิดพลาดหรือ User Account ของท่านไม่ถูกต้อง โปรดตรวจสอบอีกครั้ง!"); // Login ไม่ผ่าน (ปรับใช้เป็น medal)
             </script>-->
             <script type="text/javascript">
-                $(window).load(function(){
-                $('#ConnectionFalse').modal({backdrop: 'static', keyboard: false});                        $('#ConnectionFalse').modal('show');
+                $(window).load(function() {
+                    $('#ConnectionFalse').modal({
+                        backdrop: 'static',
+                        keyboard: false
+                    });
+                    $('#ConnectionFalse').modal('show');
                 });
             </script>
-        
+
         <?php
             exit();
         }
-    }else if($total == '0'){ // ไม่พบ username ในฐานข้อมูล
+    } else if ($total == '0') { // ไม่พบ username ในฐานข้อมูล
         ?>
-        
-		    <!--<script>
+
+        <!--<script>
 		      alert("ขออภัย ท่านไม่มีสิทธิเข้าใช้งานในส่วนนี้!"); // Login ไม่ผ่าน (ปรับใช้เป็น medal)
             </script>-->
-            <script type="text/javascript">
-                $(window).load(function(){
-                $('#LoginFalse').modal({backdrop: 'static', keyboard: false});                        $('#LoginFalse').modal('show');
+        <script type="text/javascript">
+            $(window).load(function() {
+                $('#LoginFalse').modal({
+                    backdrop: 'static',
+                    keyboard: false
                 });
-            </script>
-        
-        <?php
+                $('#LoginFalse').modal('show');
+            });
+        </script>
+
+<?php
         exit();
     }
 }
@@ -81,19 +93,20 @@ if($_POST['username']){
 
 <!DOCTYPE html>
 <html lang="th">
-  <head>
+
+<head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>ระบบสถิติปริมาณฝุ่นละอองสำนักวิทยบริการ - <?=$PageTitle?></title>
+    <title>ระบบรายงานสภาพอากาศและฝุ่นละอองสำนักวิทยบริการ - <?= $PageTitle ?></title>
     <meta name="description" content="">
     <meta name="author" content="">
-    <meta http-equiv="refresh" content="300" >
+    <meta http-equiv="refresh" content="300">
     <link rel="shortcut icon" href="http://ddr.oas.psu.ac.th/favicon.ico" type="image/x-icon">
     <link rel="icon" href="http://ddr.oas.psu.ac.th/favicon.ico" type="image/x-icon">
-      
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script><!--jquery cookie สำหรับโหลด modal login ครั้งแรกที่เปิดเพจ-->
-    
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script><!--jquery cookie สำหรับโหลด modal login ครั้งแรกที่เปิดเพจ-->
+
     <!-- css / js ซ้อนกับที่ include
     <link href="assets/css/bootstrap.css" rel="stylesheet">
     <link href="assets/css/style.css" rel="stylesheet">
@@ -102,115 +115,113 @@ if($_POST['username']){
     <script src="assets/js/bootstrap.min.js"></script>
     <script src="assets/js/scripts.js"></script>
     -->
-    
+
     <!-- Date Picker -->
     <!-- CDN 
     <link href="//cdn.rawgit.com/Eonasdan/bootstrap-datetimepicker/e8bddc60e73c1ec2475f827be36e1957af72e2ea/build/css/bootstrap-datetimepicker.css" rel="stylesheet">
     <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment-with-locales.js"></script>
     <script src="//cdn.rawgit.com/Eonasdan/bootstrap-datetimepicker/e8bddc60e73c1ec2475f827be36e1957af72e2ea/src/js/bootstrap-datetimepicker.js"></script>
-    CDN -->  
-     
-    <link href="assets/css/bootstrap-datetimepicker.css" rel="stylesheet"> 
+    CDN -->
+
+    <link href="assets/css/bootstrap-datetimepicker.css" rel="stylesheet">
     <script src="assets/js/moment-with-locales.js"></script>
-    <script src="assets/js/bootstrap-datetimepicker.js"></script> 
-    
+    <script src="assets/js/bootstrap-datetimepicker.js"></script>
+
     <script type="text/javascript">
-        $(function () {
+        $(function() {
             $('#datetimepickerNormal').datetimepicker();
         });
-       $(function () {
+        $(function() {
             $('#datetimepickerLocal').datetimepicker({
                 locale: 'th'
             });
         });
-        $(function () {
+        $(function() {
             $('#datetimepickerLocalST').datetimepicker({
                 locale: 'th-notime'
             });
         });
-        $(function () {
+        $(function() {
             $('#datetimepickerLocalEN').datetimepicker({
                 locale: 'th-notime'
             });
         });
-        $(function () {
+        $(function() {
             $('#datetimepickerLocalCOMPST').datetimepicker({
                 locale: 'th-notime'
             });
         });
-        $(function () {
+        $(function() {
             $('#datetimepickerLocalCOMPEN').datetimepicker({
                 locale: 'th-notime'
             });
         });
     </script>
-     <!-- Date Picker-->
-    
-  </head>
-  
-  <body>
+    <!-- Date Picker-->
+
+</head>
+
+<body>
     <div class="container-fluid" style="margin-bottom:20px">
-	    <div class="row">
-		    <div class="col-md-12">
-			    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
-				    <div class="navbar-header">					 
-					    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-						     <span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
-					    </button> 
-                    <?php
-		              if(!$_SESSION["LOGIN"]){
-			        ?>
-					    <a class="navbar-brand hidden-xs" href="/index.php"><span class='glyphicon glyphicon-stats'></span> ระบบสถิติปริมาณฝุ่นละอองสำนักวิทยบริการ</a>
-					    <a class="navbar-brand visible-xs-block" style="font-size:12px;" href="/index.php"><span class='glyphicon glyphicon-stats'></span> ระบบสถิติปริมาณฝุ่นละอองสำนักวิทยบริการ</a>
-				    </div>
-				    
-			        <script type="text/javascript">
-                        
+        <div class="row">
+            <div class="col-md-12">
+                <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                            <span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
+                        </button>
+                        <?php
+                        if (!$_SESSION["LOGIN"]) {
+                        ?>
+                            <a class="navbar-brand hidden-xs" href="/index.php"><span class='glyphicon glyphicon-stats'></span> ระบบรายงานสภาพอากาศและฝุ่นละอองสำนักวิทยบริการ</a>
+                            <a class="navbar-brand visible-xs-block" style="font-size:12px;" href="/index.php"><span class='glyphicon glyphicon-stats'></span> ระบบรายงานสภาพอากาศและฝุ่นละอองสำนักวิทยบริการ</a>
+                    </div>
+
+                    <script type="text/javascript">
                         $(document).ready(function() {
-                             if ($.cookie('pop') == null) {
-                                 $('#LoginModal').modal('show');//show ครั้งเดียวต่อ session
-                                 $.cookie('pop', '1');
-                             }
-                         });
-                     
+                            if ($.cookie('pop') == null) {
+                                $('#LoginModal').modal('show'); //show ครั้งเดียวต่อ session
+                                $.cookie('pop', '1');
+                            }
+                        });
+
                         /*$(window).load(function(){
                             $('#LoginModal').modal('show');
                         });*/
-                        
-                    </script>	
-			        
-			        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" style="margin-right:15px;">
-					    <form id="signin" class="navbar-form navbar-right" role="form" method="POST" action="">
-                        	<div class="input-group">
-                            	<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                            	<input id="username" type="text" class="form-control" name="username" size="10" value="" placeholder="PSU Passport" required>                                        
-                        	</div>
-                        	<div class="input-group">
-                            	<span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                            	<input id="password" type="password" class="form-control" name="password" size="10" value="" placeholder="PSU Passport" required>                                        
-                        	</div>
-                        	<button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-log-in"></span>&nbsp;&nbsp;เข้าสู่ระบบ</button>
-                   		</form>
-				    </div>
-			        
-			        <?php
-		              }else{
-                          //include "dashboard/include/dustrec.php";
-			        ?>	
-                        <a class="navbar-brand hidden-xs" href="/dashboard/index.php"><span class='glyphicon glyphicon-stats'></span> ระบบสถิติปริมาณฝุ่นละอองสำนักวิทยบริการ</a>
-					    <a class="navbar-brand visible-xs-block" style="font-size:12px;" href="/dashboard/index.php"><span class='glyphicon glyphicon-stats'></span> ระบบสถิติปริมาณฝุ่นละอองสำนักวิทยบริการ</a>
-				    </div>
-                	
-				    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" style="margin-right:15px;">
-					    <ul class="nav navbar-nav">
-            				<li><a href="/dashboard/index.php"><span class="glyphicon glyphicon-dashboard"></span>&nbsp;Dashboard</a></li>
-						    <!--<li class="dropdown">
+                    </script>
+
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" style="margin-right:15px;">
+                        <form id="signin" class="navbar-form navbar-right" role="form" method="POST" action="">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                                <input id="username" type="text" class="form-control" name="username" size="10" value="" placeholder="PSU Passport" required>
+                            </div>
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                                <input id="password" type="password" class="form-control" name="password" size="10" value="" placeholder="PSU Passport" required>
+                            </div>
+                            <button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-log-in"></span>&nbsp;&nbsp;เข้าสู่ระบบ</button>
+                        </form>
+                    </div>
+
+                <?php
+                        } else {
+                            //include "dashboard/include/dustrec.php";
+                ?>
+                    <a class="navbar-brand hidden-xs" href="/dashboard/index.php"><span class='glyphicon glyphicon-stats'></span> ระบบรายงานสภาพอากาศและฝุ่นละอองสำนักวิทยบริการ</a>
+                    <a class="navbar-brand visible-xs-block" style="font-size:12px;" href="/dashboard/index.php"><span class='glyphicon glyphicon-stats'></span> ระบบรายงานสภาพอากาศและฝุ่นละอองสำนักวิทยบริการ</a>
+            </div>
+
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" style="margin-right:15px;">
+                <ul class="nav navbar-nav">
+                    <li><a href="/dashboard/index.php"><span class="glyphicon glyphicon-dashboard"></span>&nbsp;Dashboard</a></li>
+                    <!--<li class="dropdown">
           						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="glyphicon glyphicon-th"></span> เลือกการทำงาน <span class="caret"></span></a>
           						<ul class="dropdown-menu" role="menu">
             						<li><a data-toggle='modal' href='#DustRecModal'><span class="glyphicon glyphicon-pencil"></span> บันทึกปริมาณฝุ่นละออง</a></li>
           						</ul>
         					</li>-->
-                            <!--<li class="dropdown">
+                    <!--<li class="dropdown">
           						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="glyphicon glyphicon-th"></span>&nbsp;เลือกการทำงาน <span class="caret"></span></a>
           						<ul class="dropdown-menu" role="menu">
             						<li><a data-toggle='modal' href='#DustRecModal'><span class="glyphicon glyphicon-pencil"></span>&nbsp;บันทึกปริมาณฝุ่นละออง</a></li>
@@ -218,20 +229,25 @@ if($_POST['username']){
             						<li><a data-toggle='modal' href='/dashboard/dustreclist.php'><span class="glyphicon glyphicon-list-alt"></span>&nbsp;ข้อมูลปริมาณฝุ่นละออง</a></li>
           						</ul>
         					</li>-->
-					    </ul>
-					    <form id="signin" class="navbar-form navbar-right" role="form" action="/dashboard/logout.php">
-				            <div class="input-group">
-                                <span style="color:#ffffff"><i class="glyphicon glyphicon-user"></i>&nbsp;สวัสดี <?php echo $_SESSION["USERNAME"]; ?>, </span>
-								<button type="submit" class="btn btn-danger"><span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>&nbsp;&nbsp;ออกจากระบบ</button>
-				            </div>
-				        </form>
-				        
-			        <?php
-		              }
-		            ?>
-		            
-				    </div>
-			    </nav>
+                </ul>
+                <form id="signin" class="navbar-form navbar-right" role="form" action="/dashboard/logout.php">
+                    <div class="input-group">
+                        <span style="color:#ffffff"><i class="glyphicon glyphicon-user"></i>&nbsp;สวัสดี <?php echo $_SESSION["USERNAME"]; ?>, </span>
+                        <button type="submit" class="btn btn-danger"><span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>&nbsp;&nbsp;ออกจากระบบ</button>
+                    </div>
+                </form>
+
+            <?php
+                        }
+            ?>
+
             </div>
+            </nav>
         </div>
-        <div class="row" style="margin-top:80px"></div>
+    </div>
+    <div class="row" style="margin-top:80px">
+        <div class="alert alert-dismissible alert-warning fade in" style="margin-left:3em;margin-right:3em;padding-bottom: 35px;">
+            <button type="button" class="close" data-dismiss="alert">×</button>
+            <span class="glyphicon glyphicon-check"></span> ขอเชิญประเมินความพึงพอใจการใช้งานระบบรายงานสภาพอากาศและฝุ่นละอองสำนักวิทยบริการ <a href="https://evaluation.oas.psu.ac.th/show.php?id=468" class="btn btn-info" target="_blank" style="float: right;">คลิกเพื่อประเมิน!</a>
+        </div>
+    </div>

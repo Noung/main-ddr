@@ -183,7 +183,8 @@ error_reporting(0); // ปิด error report
                             <?php echo date('d/m/Y', strtotime($row_result['dustrec_date'])) ?>
                         </td>-->
                     <td width="">
-                        <center><?php echo $row_result['dustrec_time'] ?> น.</center>
+                        <center><?php echo date("d/m/Y", strtotime($row_result['dustrec_date'])) . " " . $row_result['dustrec_time'] ?> น.</center>
+                        <!--<center><?php echo $row_result['dustrec_time'] ?> น.</center>-->
                     </td>
                     <!--<td width="">
                             <center><?php echo $row_result['position_name'] ?>

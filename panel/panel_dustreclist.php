@@ -104,9 +104,9 @@
                  <?php
                     //if((!$browsecourse) && (!$tagsearch)){//กรณีไม่มีการป้อนคำค้น
                     if($sort == 'dustrec_id' || $sort == 'dustrec_date'){
-                        $sql = "SELECT * from dustrec as a, position as b where a.dustrec_position_id = b.position_id order by $sort desc LIMIT 5";//กำหนดจำนวนการแสดงผลต่อ 1 หน้า
+                        $sql = "SELECT * from dustrec as a, position as b where a.dustrec_position_id = b.position_id order by $sort desc LIMIT 15";//กำหนดจำนวนการแสดงผลต่อ 1 หน้า
                     }else{
-                        $sql = "SELECT * from dustrec as a, position as b where a.dustrec_position_id = b.position_id order by $sort desc LIMIT 5";//กำหนดจำนวนการแสดงผลต่อ 1 หน้า
+                        $sql = "SELECT * from dustrec as a, position as b where a.dustrec_position_id = b.position_id order by $sort desc LIMIT 15";//กำหนดจำนวนการแสดงผลต่อ 1 หน้า
                     }
                     
 			        $query = mysqli_query($connection, $sql);

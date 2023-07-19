@@ -39,7 +39,7 @@ if (!$searchword_posid || !$searchword_stdate || !$searchword_endate) {
                         <th>บริการยืม-คืน</th>
                         <th>บริการตอบคำถามฯ</th>
                         <th>โถงอ่านหนังสือชั้น 1</th>
-                        <th>ชั้นวารสารใหม่</th>
+                        <th>หน้าอาคารสำนักวิทยบริการ</th>
                         <th>ชั้นวารสารล่วงเวลา</th>
                         <th>สำนักงานเลขานุการ</th>
                         <th>ชั้นหนังสือภาษาไทย</th>
@@ -55,10 +55,10 @@ if (!$searchword_posid || !$searchword_stdate || !$searchword_endate) {
                         <th>ทางเข้าห้องมินิเธียเตอร์</th>
                         <th>ทางเข้าห้องบริการคอมพิวเตอร์ 1</th>
                         <th>งานวิเคราะห์ทรัพยากรฯ</th>
-                        <th>งานธุรการ</th>
+                        <th>โรงพิมพ์ฝ่ายเทคโนโลยีและนวัตกรรมฯ</th>
                         <th>งานห้องสมุดดิจิทัล</th>
                         <th>งานซ่อมฯ</th>
-                        <th>ชั้นหนังสือ</th>
+                        <th>ห้องกราฟิกและสื่อสิ่งพิมพ์ดิจิทัล</th>
                         <th>ชั้นหนังสือภาษาเกาหลี</th>
                         <th>ชั้นหนังสือภาษาอังกฤษ</th>
                         <th>ชั้นหนังสือภาษาไทย</th>
@@ -2261,7 +2261,7 @@ if (!$searchword_posid || !$searchword_stdate || !$searchword_endate) {
                         <th>บริการยืม-คืน</th>
                         <th>บริการตอบคำถามฯ</th>
                         <th>โถงอ่านหนังสือชั้น 1</th>
-                        <th>ชั้นวารสารใหม่</th>
+                        <th>หน้าอาคารสำนักวิทยบริการ</th>
                         <th>ชั้นวารสารล่วงเวลา</th>
                         <th>สำนักงานเลขานุการ</th>
                         <th>ชั้นหนังสือภาษาไทย</th>
@@ -2277,10 +2277,10 @@ if (!$searchword_posid || !$searchword_stdate || !$searchword_endate) {
                         <th>ทางเข้าห้องมินิเธียเตอร์</th>
                         <th>ทางเข้าห้องบริการคอมพิวเตอร์ 1</th>
                         <th>งานวิเคราะห์ทรัพยากรฯ</th>
-                        <th>งานธุรการ</th>
+                        <th>โรงพิมพ์ฝ่ายเทคโนโลยีและนวัตกรรมฯ</th>
                         <th>งานห้องสมุดดิจิทัล</th>
                         <th>งานซ่อมฯ</th>
-                        <th>ชั้นหนังสือ</th>
+                        <th>ห้องกราฟิกและสื่อสิ่งพิมพ์ดิจิทัล</th>
                         <th>ชั้นหนังสือภาษาเกาหลี</th>
                         <th>ชั้นหนังสือภาษาอังกฤษ</th>
                         <th>ชั้นหนังสือภาษาไทย</th>
@@ -4480,7 +4480,7 @@ if (!$searchword_posid || !$searchword_stdate || !$searchword_endate) {
     } else if ($searchword_posid == '3') {
         $posname = 'โถงอ่านหนังสือชั้น 1';
     } else if ($searchword_posid == '4') {
-        $posname = 'ชั้นวารสารใหม่';
+        $posname = 'หน้าอาคารสำนักวิทยบริการ';
     } else if ($searchword_posid == '5') {
         $posname = 'ชั้นวารสารล่วงเวลา';
     } else if ($searchword_posid == '6') {
@@ -4512,13 +4512,13 @@ if (!$searchword_posid || !$searchword_stdate || !$searchword_endate) {
     } else if ($searchword_posid == '19') {
         $posname = 'งานวิเคราะห์ทรัพยากรฯ';
     } else if ($searchword_posid == '20') {
-        $posname = 'งานธุรการ';
+        $posname = 'โรงพิมพ์ฝ่ายเทคโนโลยีและนวัตกรรมฯ';
     } else if ($searchword_posid == '21') {
         $posname = 'งานห้องสมุดดิจิทัล';
     } else if ($searchword_posid == '22') {
         $posname = 'งานซ่อมฯ';
     } else if ($searchword_posid == '23') {
-        $posname = 'ชั้นหนังสือ';
+        $posname = 'ห้องกราฟิกและสื่อสิ่งพิมพ์ดิจิทัล';
     } else if ($searchword_posid == '24') {
         $posname = 'ชั้นหนังสือภาษาเกาหลี';
     } else if ($searchword_posid == '25') {

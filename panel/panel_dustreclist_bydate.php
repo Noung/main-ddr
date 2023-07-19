@@ -190,7 +190,7 @@ error_reporting(0); // ปิด error report
                             <?php echo date('d/m/Y', strtotime($row_result['dustrec_date'])) ?>
                         </td>-->
                     <td width="">
-                        <center><?php echo $row_result['dustrec_time'] ?> น.</center>
+                        <center><?php echo date("d/m/Y", strtotime($row_result['dustrec_date'])) . " " . $row_result['dustrec_time'] ?> น.</center>
                     </td>
                     <!--<td width="">
                             <center><?php echo $row_result['position_name'] ?>
@@ -310,16 +310,17 @@ error_reporting(0); // ปิด error report
                         label: {
                             text: 'มาตรฐาน PM = 37.5 µg/m³'
                         }
-                    }/*,
-                    {
-                        value: 1000,
-                        color: 'red', //#F7A35C
-                        dashStyle: 'shortdash',
-                        width: 2,
-                        label: {
-                            text: 'มาตรฐาน CO2 = 1000 PPM.'
-                        }
-                    }*/
+                    }
+                    /*,
+                                        {
+                                            value: 1000,
+                                            color: 'red', //#F7A35C
+                                            dashStyle: 'shortdash',
+                                            width: 2,
+                                            label: {
+                                                text: 'มาตรฐาน CO2 = 1000 PPM.'
+                                            }
+                                        }*/
                 ]
             },
             tooltip: {
@@ -588,7 +589,16 @@ error_reporting(0); // ปิด error report
                             allowDecimals: false,
                             title: {
                                 text: 'ข้อมูล'
-                            }
+                            },
+                            plotLines: [{
+                                value: 37.5,
+                                color: 'red', //#7CB5EC
+                                dashStyle: 'shortdash',
+                                width: 2,
+                                label: {
+                                    text: 'มาตรฐาน PM = 37.5 µg/m³'
+                                }
+                            }]
                         },
                         tooltip: {
                             /*formatter: function () {
@@ -682,7 +692,16 @@ error_reporting(0); // ปิด error report
                                 allowDecimals: false,
                                 title: {
                                     text: 'ข้อมูล'
-                                }
+                                },
+                                plotLines: [{
+                                    value: 37.5,
+                                    color: 'red', //#7CB5EC
+                                    dashStyle: 'shortdash',
+                                    width: 2,
+                                    label: {
+                                        text: 'มาตรฐาน PM = 37.5 µg/m³'
+                                    }
+                                }]
                             },
                             tooltip: {
                                 /*formatter: function () {
