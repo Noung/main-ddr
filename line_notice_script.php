@@ -35,7 +35,7 @@
                             $massage1=iconv('utf-8','utf-8',$messageline);
 
                             define('LINE_API',"https://notify-api.line.me/api/notify");
-                            $token = "h7GbD4ac0qMXgx6YYqCR4Zt6niD1If0fPJzjOea1Z2t"; //ใส่ Token ของ group line ที่จะแจ้ง
+                            $token = ""; //ใส่ Token ของ group line ที่จะแจ้ง
                             $str = $massage1; //ข้อความที่ต้องการส่ง สูงสุด 1000 ตัวอักษร
                             $res = notify_message($str,$token);
                             //print_r($res);
