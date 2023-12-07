@@ -1,9 +1,9 @@
 <?php
 	//ตั้งค่าการเชื่อมต่อฐานข้อมูล
 	$database_host 			= 'localhost';
-	$database_username 		= 'ddr';
-	$database_password 		= '**123ddr321**';
-	$database_name 			= 'ddr';
+	$database_username 		= '';
+	$database_password 		= '';
+	$database_name 			= '';
 
 	$mysqli = new mysqli($database_host, $database_username, $database_password, $database_name);
     //กำหนด charset ให้เป็น utf8 เพื่อรองรับภาษาไทย
